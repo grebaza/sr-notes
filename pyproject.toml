@@ -1,0 +1,34 @@
+[project]
+name = "srn"
+authors = [
+  {name = "Guillermo Rebaza", email = "grebaza@gmail.com"}
+]
+readme = "README.md"
+description = "Spaced repetition for Notes"
+dynamic = ["dependencies", "version"]
+requires-python = ">=3.10"
+classifiers = [
+    # Specify the Python versions you support
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+
+[project.scripts]
+srn-help = "srn.cli.help:main"
+srn-review = "srn.cli.review:main"
+
+[build-system]
+requires = ["setuptools >= 66.1.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+# package-dir = {"" = "src"}
+include-package-data = true
+
+[tool.setuptools.dynamic]
+version = {attr = "srn.release.__version__"}
+dependencies = { file = ["requirements.in"] }
+
+[tool.setuptools.packages.find]
+# where = ["src"]
+exclude = ["contrib", "docs", "test*"]

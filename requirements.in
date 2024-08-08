@@ -1,0 +1,4 @@
+fsrs~=2.5.1
+schema~=0.7.5
+tenacity ~= 8.2.3
+argcomplete ~= 3.3.0
