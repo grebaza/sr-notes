@@ -73,7 +73,7 @@ APP_HOME = "~/.srn"
 CONFIG_FILE = None
 DEFAULT_DEBUG = False
 DEFAULT_LOG_FILTER: t.List[t.Any] = []
-DEFAULT_LOG_PATH = "~"
+DEFAULT_LOG_PATH = "srn.log"
 DEFAULT_VERBOSITY = 0
 LOG_BACKUP_COUNT = 30
 LOG_FORMAT = "[%(asctime)s] %(levelname)s %(module)s:%(message)s"
@@ -81,8 +81,8 @@ LOG_INTERVAL = 1
 LOG_LEVEL = "ERROR"
 LOG_ROTATION = "midnight"
 LOG_TIME_ROTATION_ENABLED = True
-NOTES_PATH = "~/wiki"
-REVIEW_LOG_FILE = "~/wiki/review_log.json"
+NOTES_PATH = "~/"
+REVIEW_LOG_FILE = "~/.srn/review_log.json"
 
 # http://nezzen.net/2008/06/23/colored-text-in-python-using-ansi-escape-sequences/
 COLOR_CODES = {
