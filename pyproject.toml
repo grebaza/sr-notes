@@ -1,34 +1,43 @@
 [project]
 name = "srn"
-authors = [
-  {name = "Guillermo Rebaza", email = "grebaza@gmail.com"}
-]
 readme = "README.md"
 description = "Spaced repetition for Notes"
-dynamic = ["dependencies", "version"]
+dynamic = ["version"]
 requires-python = ">=3.10"
+keywords = []
+authors = [{ name = "Guillermo Rebaza", email = "grebaza@gmail.com" }]
+license = { text = "MIT" }
 classifiers = [
-    # Specify the Python versions you support
-    "Programming Language :: Python :: 3",
-    "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Operating System :: OS Independent",
 ]
-
-[project.scripts]
-srn-help = "srn.cli.help:main"
-srn-review = "srn.cli.review:main"
+dependencies = [
+  "fsrs~=2.5.1",
+  "schema~=0.7.5",
+  "tenacity ~= 8.2.3",
+  "argcomplete ~= 3.3.0",
+]
 
 [build-system]
 requires = ["setuptools >= 66.1.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
+[project.scripts]
+srn-help = "srn.cli.help:main"
+srn-review = "srn.cli.review:main"
+
 [tool.setuptools]
-# package-dir = {"" = "src"}
 include-package-data = true
 
+[tool.setuptools.package-data]
+"*" = ["../../LICENSES/*"]
+
 [tool.setuptools.dynamic]
-version = {attr = "srn.release.__version__"}
-dependencies = { file = ["requirements.in"] }
+version = { attr = "srn.release.__version__" }
 
 [tool.setuptools.packages.find]
-# where = ["src"]
 exclude = ["contrib", "docs", "test*"]
+
+[dependency-groups]
+dev = ["pre-commit>=4.0.1", "ruff>=0.8.0"]
