@@ -31,13 +31,14 @@ srn-review = "srn.cli.review:main"
 include-package-data = true
 
 [tool.setuptools.package-data]
-"*" = ["../../LICENSES/*"]
+"*" = ["../LICENSES/*"]
 
 [tool.setuptools.dynamic]
 version = { attr = "srn.release.__version__" }
 
 [tool.setuptools.packages.find]
-exclude = ["contrib", "docs", "test*"]
+include = ["srn*"]
+exclude = ["contrib", "docs", "test*", "node_modules*", "dist"]
 
 [dependency-groups]
 dev = ["pre-commit>=4.0.1", "ruff>=0.8.0"]
