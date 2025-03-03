@@ -19,9 +19,8 @@ class ReviewCLI(CLI):
             usage="usage: %prog [options]",
             desc=ReviewCLI.__doc__,
         )
-        # notes path
+        # add args
         oh.add_notes_path(self.parser)
-        # review log file
         oh.add_review_log_file(self.parser)
 
     def post_process_args(self, options):
@@ -32,15 +31,13 @@ class ReviewCLI(CLI):
         super(ReviewCLI, self).run()
 
         showing_args = {
-            k: v
-            for k, v in self.cli_args.items()
-            if k in ["notes_path", "review_log_file"]
+            k: v for k, v in self.cli_args.items() if k in ["notes_path", "review_file"]
         }
-        print(f"Review Note\n args: {showing_args}")
+        print(f"Spaced Repetition Review\nArgs: {showing_args}")
         reviewer = NoteReviewer(
-            self.cli_args["notes_path"], self.cli_args["review_log_file"]
+            self.cli_args["notes_path"], self.cli_args["review_file"]
         )
-        reviewer.review_notes()
+        reviewer.review()
 
 
 def main(args=None):

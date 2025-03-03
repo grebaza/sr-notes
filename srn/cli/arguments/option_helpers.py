@@ -38,7 +38,7 @@ class ArgumentParser(argparse.ArgumentParser):
             "extend",
             PrependListAction,
         }:
-            help = f'{help.rstrip(".")}. This argument may be specified multiple times.'
+            help = f"{help.rstrip('.')}. This argument may be specified multiple times."
         kwargs["help"] = help
         return super().add_argument(*args, **kwargs)
 
@@ -291,7 +291,7 @@ def add_review_log_file(parser: ArgumentParser):
         "--review-file",
         action="store",
         default=C.REVIEW_LOG_FILE,
-        dest="review_log_file",
+        dest="review_file",
         type=str,
         help="Path to the review log file",
     )

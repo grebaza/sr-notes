@@ -139,7 +139,7 @@ def rmtree(
         # `Union[([func, path, ExcInfo] -> Any), ([func, path, BaseException] -> Any)]`.
         cast(Union[OnExc, OnErr], rmtree_errorhandler),
         onexc=onexc,
-    )
+    )  # type:ignore[call-arg]
     if sys.version_info >= (3, 12):
         # See https://docs.python.org/3.12/whatsnew/3.12.html#shutil.
         shutil.rmtree(dir, onexc=handler)  # type: ignore
@@ -239,8 +239,9 @@ def ask(message: str, options: Iterable[str]) -> str:
         response = response.strip().lower()
         if response not in options:
             print(
-                "Your response ({!r}) was not one of the expected responses: "
-                "{}".format(response, ", ".join(options))
+                "Your response ({!r}) was not one of the expected responses: {}".format(
+                    response, ", ".join(options)
+                )
             )
         else:
             return response
@@ -557,7 +558,7 @@ class HiddenText:
 
     # This is useful for testing.
     def __eq__(self, other: Any) -> bool:
-        if type(self) != type(other):
+        if type(self) is not type(other):
             return False
 
         # The string being used for redaction doesn't also have to match,
