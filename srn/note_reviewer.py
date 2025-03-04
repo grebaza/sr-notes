@@ -38,6 +38,9 @@ class NoteReviewer:
 
         # Load review log
         self.review_data = {}
+        if not self.review_file.exists():
+            self.save_review()
+
         try:
             with open(self.review_file, "r") as f:
                 self.review_data = json.load(f)
@@ -45,6 +48,10 @@ class NoteReviewer:
             logger.error("Could not load review json file")
 
         self.fsrs = FSRS()
+
+    def save_review(self):
+        with open(self.review_file, "w") as f:
+            json.dump(self.review_data, f, indent=2)
 
     def get_due_list(self, q=None):
         """
@@ -82,10 +89,6 @@ class NoteReviewer:
             NoteReviewer.REVIEW_STATE_KEY: state.to_dict(),
             NoteReviewer.REVIEW_LOG_KEY: log.to_dict(),
         }
-
-    def save_review(self):
-        with open(self.review_file, "w") as f:
-            json.dump(self.review_data, f, indent=2)
 
     def review(self):
         """

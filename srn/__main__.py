@@ -1,36 +1,14 @@
-import argparse
 import logging
 import os
 import sys
-from importlib.metadata import distribution
 
-from . import constants as C
+from .cli import cli
 
 logger = logging.getLogger(__name__)
 
 
-def _short_name(name: str):
-    app_name = f"{C.APP_NAME.lower()}"
-    return name.removeprefix(f"{app_name}-").replace(f"{app_name}", "help")
-
-
 def main():
-    dist = distribution(C.APP_NAME)
-    ep_map = {
-        _short_name(ep.name): ep
-        for ep in dist.entry_points
-        if ep.group == "console_scripts"
-    }
-
-    parser = argparse.ArgumentParser(
-        prog=f"python -m {C.APP_NAME.lower()}", add_help=False
-    )
-    parser.add_argument("entry_point", choices=list(ep_map))
-    args, extra = parser.parse_known_args()
-
-    _main = ep_map[args.entry_point].load()
-
-    _main([args.entry_point] + extra)
+    cli()
 
 
 # If we are running from a wheel, add the wheel to sys.path
