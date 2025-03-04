@@ -46,12 +46,12 @@ class NoteReviewer:
 
         self.fsrs = FSRS()
 
-    def get_due_list(self, q: int = 20):
+    def get_due_list(self, q=None):
         """
         Get due notes from root dir.
 
         Due time comes from review file for each file in `self.root` dir. It
-        includes non reviewed files.
+        includes non-reviewed files.
         """
         notes = list(self.root.rglob("*.md"))
         ids = [str(f) for f in notes]  # note's id is its full path
@@ -66,7 +66,7 @@ class NoteReviewer:
             else:
                 due.append(notes[k])
 
-        return due[:q]
+        return due[:q] if q else due
 
     def update(self, note_id, rating):
         if note_id in self.review_data:
@@ -94,7 +94,7 @@ class NoteReviewer:
         notes = self.get_due_list()
 
         # Open a selection dialog using a gui picker
-        names = [f.name for f in notes]
+        names = [str(f.relative_to(self.root)) for f in notes]
         _, index, selected = pick(
             names, picker_args=["-normal-window"], prompt="Select Note"
         )
