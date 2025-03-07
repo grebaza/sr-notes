@@ -98,9 +98,7 @@ class NoteReviewer:
 
         # Open a selection dialog using a gui picker
         names = [str(f.relative_to(self.root)) for f in notes]
-        _, index, selected = pick(
-            names, picker_args=["-normal-window"], prompt="Select Note"
-        )
+        _, index, selected = pick(names, prompt="Select Note")
         if selected:
             path = notes[index]
             note_id = str(notes[index])
@@ -112,7 +110,6 @@ class NoteReviewer:
             while True:
                 returncode, _, answer = pick(
                     [],
-                    ["-normal-window"],
                     prompt="Enter Recall Difficulty (1:easy - 4:hard)",
                 )
                 if returncode == 0:

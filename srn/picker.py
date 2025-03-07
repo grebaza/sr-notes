@@ -7,10 +7,18 @@ Current supported matchers are:
 * choose (https://github.com/chipsenkbeil/choose) on MacOS
 """
 
+import os
 import subprocess
 import platform
 
 SYSTEM_NAME = platform.system()
+
+
+def is_wayland():
+    """Return True if the current session is using Wayland."""
+    return os.environ.get("XDG_SESSION_TYPE", "").lower() == "wayland" or bool(
+        os.environ.get("WAYLAND_DISPLAY")
+    )
 
 
 def get_picker_cmd(picker_args=None, fuzzy=True, prompt="Input"):
@@ -23,6 +31,8 @@ def get_picker_cmd(picker_args=None, fuzzy=True, prompt="Input"):
         if fuzzy:
             args += ["-matching", "fuzzy"]
         args += ["-dmenu", "-p", prompt, "-format", "s", "-i", "-lines", "5"]
+        if is_wayland():
+            args += ["-normal-window"]
     elif SYSTEM_NAME == "Darwin":
         args = ["choose"]
     else:
