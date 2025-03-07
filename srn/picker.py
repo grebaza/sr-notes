@@ -5,6 +5,7 @@ Current supported matchers are:
 
 * rofi for Linux platforms
 * choose (https://github.com/chipsenkbeil/choose) on MacOS
+* from: https://github.com/gillescastel/inkscape-figures
 """
 
 import os

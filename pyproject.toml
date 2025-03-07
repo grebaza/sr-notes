@@ -1,11 +1,16 @@
+[build-system]
+requires = ["setuptools >= 66.1.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "srn"
 readme = "README.md"
 description = "Spaced repetition for Notes"
-dynamic = ["version"]
-requires-python = ">=3.10"
-keywords = []
 authors = [{ name = "Guillermo Rebaza", email = "grebaza@gmail.com" }]
+dynamic = ["version"]
+urls = { Homepage = "https://github.com/grebaza/sr-notes.git" }
+keywords = ["spaced repetition", "note taking", "productivity"]
+requires-python = ">=3.10"
 license = { text = "MIT" }
 classifiers = [
   "Programming Language :: Python :: 3",
@@ -13,16 +18,12 @@ classifiers = [
   "Operating System :: OS Independent",
 ]
 dependencies = [
+  "argcomplete ~= 3.3.0",
+  "click ~= 8.1.8",
   "fsrs~=2.5.1",
   "schema~=0.7.5",
   "tenacity ~= 8.2.3",
-  "argcomplete ~= 3.3.0",
-  "click ~= 8.1.8",
 ]
-
-[build-system]
-requires = ["setuptools >= 66.1.0", "wheel"]
-build-backend = "setuptools.build_meta"
 
 [project.scripts]
 srn-review = "srn.cli:review"
