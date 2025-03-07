@@ -81,7 +81,7 @@ LOG_INTERVAL = 1
 LOG_LEVEL = "ERROR"
 LOG_ROTATION = "midnight"
 LOG_TIME_ROTATION_ENABLED = True
-NOTES_PATH = "~/"
+NOTES_PATH = os.getcwd()
 REVIEW_LOG_FILE = "~/.srn/review_log.json"
 
 # http://nezzen.net/2008/06/23/colored-text-in-python-using-ansi-escape-sequences/

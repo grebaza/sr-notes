@@ -13,9 +13,8 @@ def cli():
 
 
 @cli.command()
-@click.option(
-    "--notes-path",
-    "-d",
+@click.argument(
+    "notes-path",
     default=C.NOTES_PATH,
     type=click.Path(exists=False, file_okay=False, dir_okay=True),
 )
